@@ -1,0 +1,60 @@
+@use 'variable' as var;
+@use 'mixin';
+
+.header {
+    height: 100px;
+    width: 400px;
+    background-color: var.$navy;
+}
+
+.main {
+    height: 250px;
+    width: 250px;
+    background-color: var.$red;
+}
+
+.aside {
+    height: 250px;
+    width: 150px;
+    background-color: var.$green;
+}
+
+.footer {
+    height: 100px;
+    width: 400px;
+    background-color: var.$brown;
+}
+
+
+.square > div {
+    @include mixin.square();
+}
+
+.rectangle > div {
+    @include mixin.rectangle();
+}
+
+.flex {
+    display: flex;
+}
+
+.flex_square {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+
+.margin_rectangle {
+    margin-left: 40px;
+    margin-top: 40px;
+}
+
+@each $className in var.$classNames {
+    $index: index(var.$classNames, $className);
+
+    .#{$className} {
+        background-color: nth(var.$buttonColor, $index);
+    }
+}
+
